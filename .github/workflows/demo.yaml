@@ -15,12 +15,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "This is a test step"
-
+  
+  myjob:
+   script:
+    - echo "This is artifact Job" >geo.txt
+  artifacts: 
+    paths : [geo.txt]
+    when: always
+  
   integration:
     runs-on: ubuntu-latest
     steps:
       - run: echo "This is an integration step"
       - run: exit 1
+    allow_failure: false
 
   prod:
     runs-on: ubuntu-latest
